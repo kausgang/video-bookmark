@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <div style="text-align: center">
+      <button onclick="playPause()">Play/Pause</button>
+      <button onclick="makeBig()">Big</button>
+      <button onclick="makeSmall()">Small</button>
+      <button onclick="makeNormal()">Normal</button>
+      <br /><br />
+      <video id="video1" width="420">
+        <source
+          src="./VIDEO/[HQ] Requiem for a dream (Piano cover) (720p_30fps_H264-128kbit_AAC).mp4"
+          type="video/mp4"
+        />
+        <!-- <source src="mov_bbb.ogg" type="video/ogg" /> -->
+        Your browser does not support HTML video.
+      </video>
+      <p id="seek"></p>
+    </div>
+
+    <script>
+      var myVideo = document.getElementById("video1");
+      var seek = document.getElementById("seek");
+
+      function playPause() {
+        if (myVideo.paused) {
+          myVideo.play();
+        } else myVideo.pause();
+      }
+
+      function makeBig() {
+        myVideo.width = 560;
+      }
+
+      function makeSmall() {
+        myVideo.width = 320;
+      }
+
+      function makeNormal() {
+        myVideo.width = 420;
+      }
+    </script>
+  </body>
+</html>
