@@ -2,47 +2,56 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <!-- <link rel="stylesheet" href="/stylesheets/style.css" /> -->
+
+    <!-- bootstrap theme -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.production.min.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
+    ></script>
+
+    <script
+      src="https://unpkg.com/@mui/material@latest/umd/material-ui.production.min.js"
+      crossorigin="anonumous"
+    ></script>
+
+    <!-- Load Bable -->
+    <!-- order is important...BABEL should come at last -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
   </head>
   <body>
-    <div style="text-align: center">
-      <button onclick="playPause()">Play/Pause</button>
-      <button onclick="makeBig()">Big</button>
-      <button onclick="makeSmall()">Small</button>
-      <button onclick="makeNormal()">Normal</button>
-      <br /><br />
-      <video id="video1" width="420">
-        <source
-          src="./VIDEO/[HQ] Requiem for a dream (Piano cover) (720p_30fps_H264-128kbit_AAC).mp4"
-          type="video/mp4"
-        />
-        <!-- <source src="mov_bbb.ogg" type="video/ogg" /> -->
-        Your browser does not support HTML video.
-      </video>
-      <p id="seek"></p>
-    </div>
-
-    <script>
-      var myVideo = document.getElementById("video1");
-      var seek = document.getElementById("seek");
-
-      function playPause() {
-        if (myVideo.paused) {
-          myVideo.play();
-        } else myVideo.pause();
-      }
-
-      function makeBig() {
-        myVideo.width = 560;
-      }
-
-      function makeSmall() {
-        myVideo.width = 320;
-      }
-
-      function makeNormal() {
-        myVideo.width = 420;
-      }
-    </script>
+    <div id="root" class="container"></div>
   </body>
+
+  <script>
+    let mp3_files_string = "<%= filenames %>";
+    let mp3_files = mp3_files_string.split(",");
+    // console.log(mp3_files);
+  </script>
+
+  <script type="text/babel">
+    const { Slider, Select, FormControl, InputLabel, MenuItem } = MaterialUI;
+  </script>
+
+  <script
+    type="text/babel"
+    src="javascripts/REACT/Components/SelectAudio.js"
+  ></script>
+  <script
+    type="text/babel"
+    src="javascripts/REACT/Components/Container.js"
+  ></script>
+  <!-- Index component -->
+  <script type="text/babel" src="/javascripts/REACT/index.js"></script>
 </html>
