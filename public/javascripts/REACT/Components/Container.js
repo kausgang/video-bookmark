@@ -14,9 +14,9 @@ function Container(props) {
     // setIsHidden(false);
 
     let filename = "./VIDEO/" + selected_song.split("/").pop();
-    console.log(filename);
+    // console.log(filename);
     setVideo(filename);
-    console.log(video);
+    // console.log(video);
   }
 
   return (
@@ -25,8 +25,10 @@ function Container(props) {
         <SelectAudio select_song={select_song} mp3_files={mp3_files} />
       </div>
 
-      <div className="mt-3">
+      <div className="d-flex flex-column align-items-center m-2">
         <Video video_file={video} />
+
+        <PlaybackControl video_file={video} />
       </div>
     </div>
   );

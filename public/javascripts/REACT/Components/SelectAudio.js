@@ -7,7 +7,7 @@ function SelectAudio(props) {
     let selected_song = event.target.value;
     setAudio(selected_song);
 
-    // setIsDisabled(true);
+    setIsDisabled(true);
 
     // CREATE A DUMMY BOOKMARK FILE WHEN THE SUDIO IS SELECTED
     // URL = "/list_bookmark?filename=" + filename;
