@@ -20,7 +20,7 @@ function SelectAudio(props) {
 
   return (
     <FormControl id="song_selection" disabled={isDisabled} fullWidth>
-      <InputLabel id="demo-simple-select-label">Song</InputLabel>
+      <InputLabel id="demo-simple-select-label">Video</InputLabel>
       <Select
         labelId="demo-simple-select-label"
         id="demo-simple-select"
