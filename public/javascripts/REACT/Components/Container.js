@@ -1,6 +1,7 @@
 function Container(props) {
   const [video, setVideo] = React.useState("abc");
   const [filename, setFilename] = React.useState("");
+  const [render_list, setRender_list] = React.useState(null);
 
   function select_song(selected_song) {
     let file = "./VIDEO/" + selected_song.split("/").pop();
@@ -32,6 +33,7 @@ function Container(props) {
           // if(bookmark_name!==null)
           // alert("Bookmark created successfully");
           // setBookmark_timestamp([bookmark_name, timestamp]);
+          setRender_list(timestamp);
         }
       });
     }
@@ -49,6 +51,8 @@ function Container(props) {
         <PlaybackControl video_file={video} />
 
         <BookmarkCreator save_bookmark={save_bookmark} />
+
+        <BookmarkList filename={filename} render_list={render_list} />
       </div>
     </div>
   );
