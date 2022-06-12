@@ -7,6 +7,9 @@ var logger = require("morgan");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 
+// CREATE BOOKMARK ROUTER
+var create_bookmark_Router = require("./routes/create_bookmark");
+
 var app = express();
 
 // view engine setup
@@ -23,6 +26,8 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+
+app.use("/create_bookmark", create_bookmark_Router);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

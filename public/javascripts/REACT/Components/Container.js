@@ -1,22 +1,40 @@
 function Container(props) {
   const [video, setVideo] = React.useState("abc");
-  // const [filename, setFilename] = React.useState("");
+  const [filename, setFilename] = React.useState("");
 
   function select_song(selected_song) {
-    // CHANGE SOUND SOURCE
-    // let new_sound = new Howl({
-    //   src: selected_song,
-    //   html5: true,
-    // });
-    // setSound(new_sound);
-    // setFilename(selected_song.split("/").pop());
-    // // CHANGE DISPLAY OF PLAYAUDIO
-    // setIsHidden(false);
-
-    let filename = "./VIDEO/" + selected_song.split("/").pop();
+    let file = "./VIDEO/" + selected_song.split("/").pop();
     // console.log(filename);
-    setVideo(filename);
-    // console.log(video);
+    setVideo(file);
+    setFilename(selected_song.split("/").pop());
+  }
+
+  function save_bookmark(bookmark_name, timestamp) {
+    //API call to TO SAVE IT IN SERVER
+    if (bookmark_name !== null) {
+      fetch("/create_bookmark", {
+        method: "POST",
+        body: JSON.stringify({
+          filename: filename,
+          bookmark_name: bookmark_name,
+          timestamp: timestamp,
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      }).then((response) => {
+        const status = response.status;
+        console.log("status = ", status);
+
+        if (status !== 200) {
+          alert("error occured writing to bookmark record");
+        } else {
+          // if(bookmark_name!==null)
+          // alert("Bookmark created successfully");
+          // setBookmark_timestamp([bookmark_name, timestamp]);
+        }
+      });
+    }
   }
 
   return (
@@ -29,6 +47,8 @@ function Container(props) {
         <Video video_file={video} />
 
         <PlaybackControl video_file={video} />
+
+        <BookmarkCreator save_bookmark={save_bookmark} />
       </div>
     </div>
   );

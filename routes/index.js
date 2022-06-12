@@ -22,7 +22,7 @@ filenames.forEach((element) => {
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
-  res.render("index", { title: "Express", filename: filenames });
+  res.render("index", { title: "Video Bookmark", filename: filenames });
 });
 
 module.exports = router;

@@ -1,36 +1,22 @@
 function PlaybackControl(props) {
-  let sound = props.sound;
+  // let sound = props.sound;
   // initialize timestamp to 0 second
-  const [timestamp, setTimestamp] = React.useState(0);
+  // const [timestamp, setTimestamp] = React.useState(0);
   const [playing, setPlaying] = React.useState(false);
 
+  var myVideo = document.getElementById("video");
+
   // MOVING SLIDER WILL UPDATE CURRENTSEEK AND RERENDER PLAYBACK
-  React.useEffect(() => {
-    setTimestamp(props.current_seek);
+  // React.useEffect(() => {
+  //   setTimestamp(props.current_seek);
 
-    if (playing) {
-      setTimeout(() => {
-        // props.seek_progressbar(Math.round(sound.seek()));
-        props.seek_progressbar(sound.seek());
-      }, 1000);
-    }
-
-    // if (playing) {
-    //   props.seek_progressbar(Math.round(sound.seek()));
-    // }
-
-    // // BOOKARK SEEK HAS BEEN CLICKED
-    // if (props.audio_value !== null) {
-    //   console.log("audio_value=", props.audio_value);
-    //   // GET CURRENT SEEK TIME FROM PARENT
-    //   setTimestamp(props.audio_value);
-    //   // SEEK TO TMESTAMP
-    //   sound.seek(timestamp);
-
-    //   // UPDATE THE SEEK COUNTER IN PROGRESS BAR
-    //   props.seek_progressbar(timestamp);
-    // }
-  });
+  //   if (playing) {
+  //     setTimeout(() => {
+  //       // props.seek_progressbar(Math.round(sound.seek()));
+  //       props.seek_progressbar(sound.seek());
+  //     }, 1000);
+  //   }
+  // });
 
   const play = () => {
     // let intervalID = 0
@@ -40,15 +26,8 @@ function PlaybackControl(props) {
       .getElementById("play_pause")
       .getAttribute("class");
 
-    var myVideo = document.getElementById("video");
-
     if (button_class === "playing btn btn-primary btn-lg mr-3") {
       //now i can only pause it
-      // CLEAR INTERVAL
-      // clearInterval(intervalID)
-      // PAUSE THE MUSIC
-      // sound.pause();
-
       myVideo.pause();
 
       // Change Icon
@@ -59,11 +38,6 @@ function PlaybackControl(props) {
         .getElementById("play_pause")
         .setAttribute("class", "paused btn btn-primary btn-lg mr-3");
     } else {
-      // GET CURRENT SEEK TIME FROM PARENT
-      // setTimestamp(props.current_seek);
-      // SEEK TO TMESTAMP
-      // sound.seek(timestamp);
-
       // PLAY MUSIC
       // sound.play();
       myVideo.play();
@@ -83,62 +57,69 @@ function PlaybackControl(props) {
 
   const back1sec = () => {
     // GET CURRENT SEEK TIME FROM PARENT
-    setTimestamp(props.current_seek);
+    // setTimestamp(props.current_seek);
     // SEEK TO TMESTAMP
-    sound.seek(timestamp - 1);
+    // sound.seek(timestamp - 1);
 
     // UPDATE THE SEEK COUNTER IN PROGRESS BAR
-    props.seek_progressbar(timestamp - 1);
+    // props.seek_progressbar(timestamp - 1);
+
+    myVideo.currentTime -= 1;
   };
 
   const back10sec = () => {
-    // GET CURRENT SEEK TIME FROM PARENT
-    setTimestamp(props.current_seek);
-    // SEEK TO TMESTAMP
-    sound.seek(timestamp - 10);
+    // // GET CURRENT SEEK TIME FROM PARENT
+    // setTimestamp(props.current_seek);
+    // // SEEK TO TMESTAMP
+    // sound.seek(timestamp - 10);
 
-    // UPDATE THE SEEK COUNTER IN PROGRESS BAR
-    props.seek_progressbar(timestamp - 10);
+    // // UPDATE THE SEEK COUNTER IN PROGRESS BAR
+    // props.seek_progressbar(timestamp - 10);
+    myVideo.currentTime -= 10;
   };
 
   const back60sec = () => {
-    // GET CURRENT SEEK TIME FROM PARENT
-    setTimestamp(props.current_seek);
-    // SEEK TO TMESTAMP
-    sound.seek(timestamp - 60);
+    // // GET CURRENT SEEK TIME FROM PARENT
+    // setTimestamp(props.current_seek);
+    // // SEEK TO TMESTAMP
+    // sound.seek(timestamp - 60);
 
-    // UPDATE THE SEEK COUNTER IN PROGRESS BAR
-    props.seek_progressbar(timestamp - 60);
+    // // UPDATE THE SEEK COUNTER IN PROGRESS BAR
+    // props.seek_progressbar(timestamp - 60);
+    myVideo.currentTime -= 60;
   };
 
   const forward1sec = () => {
-    // GET CURRENT SEEK TIME FROM PARENT
-    setTimestamp(props.current_seek);
-    // SEEK TO TMESTAMP
-    sound.seek(timestamp + 1);
+    // // GET CURRENT SEEK TIME FROM PARENT
+    // setTimestamp(props.current_seek);
+    // // SEEK TO TMESTAMP
+    // sound.seek(timestamp + 1);
 
-    // UPDATE THE SEEK COUNTER IN PROGRESS BAR
-    props.seek_progressbar(timestamp + 1);
+    // // UPDATE THE SEEK COUNTER IN PROGRESS BAR
+    // props.seek_progressbar(timestamp + 1);
+    myVideo.currentTime += 1;
   };
 
   const forward10sec = () => {
-    // GET CURRENT SEEK TIME FROM PARENT
-    setTimestamp(props.current_seek);
-    // SEEK TO TMESTAMP
-    sound.seek(timestamp + 10);
+    // // GET CURRENT SEEK TIME FROM PARENT
+    // setTimestamp(props.current_seek);
+    // // SEEK TO TMESTAMP
+    // sound.seek(timestamp + 10);
 
-    // UPDATE THE SEEK COUNTER IN PROGRESS BAR
-    props.seek_progressbar(timestamp + 10);
+    // // UPDATE THE SEEK COUNTER IN PROGRESS BAR
+    // props.seek_progressbar(timestamp + 10);
+    myVideo.currentTime += 10;
   };
 
   const forward60sec = () => {
-    // GET CURRENT SEEK TIME FROM PARENT
-    setTimestamp(props.current_seek);
-    // SEEK TO TMESTAMP
-    sound.seek(timestamp + 60);
+    // // GET CURRENT SEEK TIME FROM PARENT
+    // setTimestamp(props.current_seek);
+    // // SEEK TO TMESTAMP
+    // sound.seek(timestamp + 60);
 
-    // UPDATE THE SEEK COUNTER IN PROGRESS BAR
-    props.seek_progressbar(timestamp + 60);
+    // // UPDATE THE SEEK COUNTER IN PROGRESS BAR
+    // props.seek_progressbar(timestamp + 60);
+    myVideo.currentTime += 60;
   };
 
   const _1x_speed = () => {
@@ -162,7 +143,8 @@ function PlaybackControl(props) {
       .getElementById("_2x_speed")
       .setAttribute("class", "btn btn-warning");
 
-    sound.rate(1);
+    // sound.rate(1);
+    myVideo.playbackRate = 1;
   };
   const _1_25x_speed = () => {
     document
@@ -185,7 +167,8 @@ function PlaybackControl(props) {
       .getElementById("_2x_speed")
       .setAttribute("class", "btn btn-warning");
 
-    sound.rate(1.25);
+    // sound.rate(1.25);
+    myVideo.playbackRate = 1.25;
   };
   const _1_5x_speed = () => {
     document
@@ -208,7 +191,8 @@ function PlaybackControl(props) {
       .getElementById("_2x_speed")
       .setAttribute("class", "btn btn-warning");
 
-    sound.rate(1.5);
+    // sound.rate(1.5);
+    myVideo.playbackRate = 1.5;
   };
   const _1_75x_speed = () => {
     document
@@ -231,7 +215,8 @@ function PlaybackControl(props) {
       .getElementById("_2x_speed")
       .setAttribute("class", "btn btn-warning");
 
-    sound.rate(1.75);
+    // sound.rate(1.75);
+    myVideo.playbackRate = 1.75;
   };
   // 2X speed
   const _2x_speed = () => {
@@ -255,7 +240,8 @@ function PlaybackControl(props) {
       .getElementById("_2x_speed")
       .setAttribute("class", "btn btn-warning active");
 
-    sound.rate(2);
+    // sound.rate(2);
+    myVideo.playbackRate = 2;
   };
 
   return (
